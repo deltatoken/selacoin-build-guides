@@ -1,0 +1,59 @@
+nstall Ubuntu Server 18.04 on a VPS – i recommend using digital ocean 
+
+here is a promo code giving you 100$ to start your own node with digital ocean
+
+https://m.do.co/c/7474750982e8
+Update your Ubuntu machine.
+
+sudo apt-get update
+sudo apt-get upgrade
+
+
+Install the required dependencies.
+
+sudo apt-get install libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libdb-dev libdb++-dev libminiupnpc-dev
+
+
+wget "https://sela-coin.com/download/tools/selacoin-daemon-linux.tar.gz" -O selacoin-daemon-linux.tar.gz
+
+
+Extract the tar file.
+
+tar -xzvf selacoin-daemon-linux.tar.gz
+
+
+Install the daemon.
+
+sudo mv selacoind /usr/bin/
+
+
+Create the config file.
+
+mkdir $HOME/.selacoin
+nano $HOME/.selacoin/selacoin.conf
+
+
+Paste the following lines in selacoin.conf.
+
+rpcuser=rpc_selacoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+staking=0
+daemon=1
+
+
+Start your node with the following command.
+
+selacoind
+
+
+make note of the ipv4 adress to the server /droplet – that is your node address
+
+
+
+dont forget to share and fork if you find this useful - Author : pablo rotem
+fb for any questions : https://www.facebook.com/pablo.rotem/
+official site : sela-coin.com
