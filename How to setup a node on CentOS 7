@@ -1,0 +1,83 @@
+install Centos on a vps 
+i recommend using digital ocean 
+
+here is a promo code giving you 100$ to start your own node with digital ocean
+
+https://m.do.co/c/7474750982e8
+
+1.Update your CentOS machine.
+
+yum update -y
+
+
+Install the EPEL repository.
+
+yum install -y epel-release
+
+
+Install the required dependencies.
+
+yum install -y gcc-c++ boost-devel libdb4-cxx libdb4-cxx-devel openssl-devel miniupnpc-devel wget unzip
+
+
+2. Install Berkeley DB from source code.
+
+cd $HOME
+wget https://download.oracle.com/berkeley-db/db-4.8.30.zip
+unzip db-4.8.30.zip
+cd db-4.8.30
+cd build_unix/
+../dist/configure --prefix=/usr/local --enable-cxx
+make
+make install
+
+
+3. Create a directory for the source code.
+
+cd $HOME
+mkdir source_code
+cd source_code
+
+wget "https://sela-coin.com/download/tools/selacoin-source.tar.gz" -O selacoin-source.tar.gz
+
+
+4. Extract the tar file.
+
+tar -xzvf selacoin-source.tar.gz
+
+
+5. Execute the following commands to compile the daemon.
+
+cd src/
+make -f makefile.unix RELEASE=1
+
+
+6. The compiling will take about 60 minutes depending on your system.
+
+7. Install the daemon.
+
+cp selacoind /usr/bin/
+
+
+8. Create the config file.
+
+mkdir $HOME/.selacoin
+nano $HOME/.selacoin/selacoin.conf
+(you can also directly connect with ftp like file zilekila and edit it using something like notepad++)
+
+
+9. Paste the following lines in selacoin.conf.
+
+rpcuser=rpc_selacoin
+rpcpassword=69c863e3356d3dae95df454a1
+rpcallowip=127.0.0.1
+listen=1
+server=1
+txindex=1
+staking=0
+daemon=1
+
+
+10 . Start your node with the following command.
+
+selacoind
